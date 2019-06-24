@@ -1,0 +1,23 @@
+{
+  "consulConfig": {
+    "address": "http://192.168.137.200:8500",
+    "serviceName": "resource-api",
+    "serviceIP": "192.168.137.200",
+    "consulClientUrl": "http://192.168.137.200:8500",
+
+    "serviceID": "resource-api-v1-final-01"
+  }
+  //"Service": {
+  //  "Name": "resource-api",
+  //  "Port": "8800",
+  //  "DocName": "resource",
+  //  "Version": "v1",
+  //  "Title": "resource  API",
+  //  "Description": "resource",
+  //  "Contact": {
+  //    "Name": "XX Tech Team",
+  //    "Email": "balabala@gohell.com"
+  //  },
+  //  "XmlFile": "Html.XXXX.xml"
+  //}
+}

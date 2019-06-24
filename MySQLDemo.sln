@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySQLDemo", "MySQLDemo\MySQLDemo.csproj", "{C301A6B7-4D4A-4DFC-8B6D-5945826EF053}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySQLDemo.Core", "MySQLDemo.Core\MySQLDemo.Core.csproj", "{07FBDBF2-C285-444C-BC5E-6F55EC6152A7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{E778B401-CB04-4A03-BA25-D9376E51E160}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resourse", "Resourse", "{13EF8D74-6E49-4A50-8137-C8FB37A7DC28}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{4806E56F-1645-4FCB-9010-AA51392EF465}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MySQLDemo.Client", "MySQLDemo.Client\MySQLDemo.Client.csproj", "{3928D6A2-70BE-4F3F-A86F-694E2037863A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{8D7C733D-C4D3-4214-A58E-0ACCE2B52789}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLDemo.Resource", "MySQLDemo.Resource\MySQLDemo.Resource.csproj", "{75BB7B6A-DD6A-4B64-B95B-33FE170B9E60}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MySQLDemo.Gateway", "MySQLDemo.Gateway\MySQLDemo.Gateway.csproj", "{D1818E6C-96A8-4481-86BA-20E3B2B7F666}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C301A6B7-4D4A-4DFC-8B6D-5945826EF053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C301A6B7-4D4A-4DFC-8B6D-5945826EF053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C301A6B7-4D4A-4DFC-8B6D-5945826EF053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C301A6B7-4D4A-4DFC-8B6D-5945826EF053}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07FBDBF2-C285-444C-BC5E-6F55EC6152A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07FBDBF2-C285-444C-BC5E-6F55EC6152A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07FBDBF2-C285-444C-BC5E-6F55EC6152A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07FBDBF2-C285-444C-BC5E-6F55EC6152A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3928D6A2-70BE-4F3F-A86F-694E2037863A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3928D6A2-70BE-4F3F-A86F-694E2037863A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3928D6A2-70BE-4F3F-A86F-694E2037863A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3928D6A2-70BE-4F3F-A86F-694E2037863A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{75BB7B6A-DD6A-4B64-B95B-33FE170B9E60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{75BB7B6A-DD6A-4B64-B95B-33FE170B9E60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{75BB7B6A-DD6A-4B64-B95B-33FE170B9E60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{75BB7B6A-DD6A-4B64-B95B-33FE170B9E60}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D1818E6C-96A8-4481-86BA-20E3B2B7F666}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1818E6C-96A8-4481-86BA-20E3B2B7F666}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1818E6C-96A8-4481-86BA-20E3B2B7F666}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1818E6C-96A8-4481-86BA-20E3B2B7F666}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C301A6B7-4D4A-4DFC-8B6D-5945826EF053} = {4806E56F-1645-4FCB-9010-AA51392EF465}
+		{07FBDBF2-C285-444C-BC5E-6F55EC6152A7} = {4806E56F-1645-4FCB-9010-AA51392EF465}
+		{3928D6A2-70BE-4F3F-A86F-694E2037863A} = {E778B401-CB04-4A03-BA25-D9376E51E160}
+		{75BB7B6A-DD6A-4B64-B95B-33FE170B9E60} = {13EF8D74-6E49-4A50-8137-C8FB37A7DC28}
+		{D1818E6C-96A8-4481-86BA-20E3B2B7F666} = {8D7C733D-C4D3-4214-A58E-0ACCE2B52789}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4F847A91-A771-43FA-B12E-8C2E60D976C4}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,33 @@
+{
+  "ReRoutes": [
+    {
+      "DownstreamPathTemplate": "/doc/resource/swagger.json",
+      "DownstreamScheme": "http",
+      "ServiceName": "resource-api",
+      "LoadBalancer": "RoundRobin",
+      "UseServiceDiscovery": true,
+      "UpstreamPathTemplate": "/doc/resource/swagger.json",
+      "UpstreamHttpMethod": [ "GET", "POST", "DELETE", "PUT" ]
+    },
+    {
+      "UseServiceDiscovery": true, // use Consul service discovery
+      "DownstreamPathTemplate": "/api/{url}",
+      "DownstreamScheme": "http",
+      "ServiceName": "resource-api",
+      "UpstreamPathTemplate": "/api/{url}",
+      "LoadBalancerOptions": {
+        "Type": "RoundRobin"
+      },
+
+      "UpstreamHttpMethod": [ "Get", "Post" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "RequestIdKey": "OcRequestId",
+    "ServiceDiscoveryProvider": {
+      "Provider": "Consul",
+      "Host": "192.168.137.200", // Consul Service IP
+      "Port": 8500 // Consul Service Port
+    }
+  }
+}
