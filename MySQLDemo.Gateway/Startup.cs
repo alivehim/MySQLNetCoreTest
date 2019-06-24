@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
+using Ocelot.Provider.Consul;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MySQLDemo.Gateway
@@ -27,16 +28,16 @@ namespace MySQLDemo.Gateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddAuthentication("Bearer")
-            //.AddIdentityServerAuthentication(options =>
-            //{
-            //    options.Authority = "http://localhost:8020";
-            //    options.RequireHttpsMetadata = false;
-            //    options.ApiName = "api1";
-            //});
+            services.AddAuthentication("Bearer")
+            .AddIdentityServerAuthentication(options =>
+            {
+                options.Authority = "http://localhost:8020";
+                options.RequireHttpsMetadata = false;
+                options.ApiName = "api1";
+            });
 
-          
-
+            services.AddOcelot(Configuration).AddConsul();
+            //services.AddOcelot(Configuration);
             services.AddMvc();
             services.AddSwaggerGen(options =>
             {
@@ -47,14 +48,21 @@ namespace MySQLDemo.Gateway
                 });
             });
 
-            services.AddOcelot(Configuration);
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             var apiList = Configuration["Swagger:ServiceDocNames"].Split(',').ToList();
-            app.UseMvc()
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "Default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Home", action = "Index" }
+                );
+            })
                 .UseSwagger()
                 .UseSwaggerUI(options =>
                 {
