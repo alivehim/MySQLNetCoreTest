@@ -13,6 +13,7 @@ COPY MySQLDemo.Resource/*.csproj ./MySQLDemo.Resource/
 RUN dotnet restore
 
 # copy everything else and build app
+COPY MySQLDemo.Core/. ./MySQLDemo.Core/
 COPY MySQLDemo/. ./MySQLDemo/
 WORKDIR /app/MySQLDemo
 RUN dotnet publish -c Release -o out
