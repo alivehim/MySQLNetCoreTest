@@ -32,7 +32,7 @@ namespace MySQLDemo.Gateway
             services.AddAuthentication()
             .AddIdentityServerAuthentication("Resource",options =>
             {
-                options.Authority = "http://localhost:8020";
+                options.Authority = "http://192.168.137.200:8020";
                 options.RequireHttpsMetadata = false;
                 options.SupportedTokens = IdentityServer4.AccessTokenValidation.SupportedTokens.Both;
                 options.ApiName = "api1";
