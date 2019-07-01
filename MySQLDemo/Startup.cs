@@ -38,7 +38,7 @@ namespace MySQLDemo
             //services.AddDbContext<TestDbContext>(Options=> Options.UseMySql(connectionString));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContextPool<XTestDbContext>( 
+            services.AddDbContextPool<IORMDbContext, XTestDbContext>( 
                 options => options.UseMySql(connectionString));
 
 
@@ -67,8 +67,8 @@ namespace MySQLDemo
             builder.Populate(services);
             //builder.RegisterAssemblyTypes(typeof(Startup).Assembly).AsImplementedInterfaces();
 
-            builder.Register(context => new XTestDbContext(context.Resolve<DbContextOptions<XTestDbContext>>()))
-                     .As<IORMDbContext>().InstancePerLifetimeScope();
+            //builder.Register(context => new XTestDbContext(context.Resolve<DbContextOptions<XTestDbContext>>()))
+            //         .As<IORMDbContext>().InstancePerLifetimeScope();
 
             //repositories
             builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
