@@ -44,7 +44,8 @@ namespace MySQLDemo.Core.DB
                 configuration.ApplyConfiguration(modelBuilder);
             }
 
-            base.OnModelCreating(modelBuilder);       }
+            base.OnModelCreating(modelBuilder);
+        }
 
         /// <summary>
         /// Modify the input SQL query by adding passed parameters

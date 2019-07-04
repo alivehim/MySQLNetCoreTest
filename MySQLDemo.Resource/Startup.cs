@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Consul;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -12,9 +14,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using MySQLDemo.Core.DB;
+using MySQLDemo.Core.Service;
+using MySQLDemo.Framework.Config;
+using MySQLDemo.Framework.Infrastructure;
 using MySQLDemo.Resource.Extension;
 using MySQLDemo.Resource.Model;
 using MySQLDemo.Resource.Service;
+using SaasKit.Multitenancy;
+using SaasKit.Multitenancy.Extensions;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace MySQLDemo.Resource
@@ -29,11 +37,22 @@ namespace MySQLDemo.Resource
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddMultitenancy<AppTenant, CachingAppTenantResolver>();
+
+            //services.AddDbContextPool<IORMDbContext, TenantDbContext>(opts=> { });
+
+            //services.AddEntityFrameworkSqlServer().AddDbContext<IORMDbContext,TenantDbContext > ();
+            services.AddDbContext<IORMDbContext, TenantDbContext>();
+
+
             services.Configure<ConsulConfig>(Configuration.GetSection("consulConfig"));
+            services.Configure<RedisConfig>(Configuration.GetSection("consulConfig"));
+
+
             services.AddHealthChecks();
             services.AddSingleton<IConsulClient, ConsulClient>(p => new ConsulClient(consulConfig =>
             {
@@ -41,6 +60,9 @@ namespace MySQLDemo.Resource
                 consulConfig.Address = new Uri(address);
             }));
 
+            services.Configure<MultitenancyOptions>(Configuration.GetSection("Multitenancy"));
+
+            services.AddSingleton<IRedisRepository, RedisRepository>();
             //services.AddSingleton<Microsoft.Extensions.Hosting.IHostedService, ConsulHostedService>();
 
             //services.AddAuthentication("Bearer")
@@ -78,6 +100,21 @@ namespace MySQLDemo.Resource
                     }
                 });
             });
+
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+            //builder.RegisterAssemblyTypes(typeof(Startup).Assembly).AsImplementedInterfaces();
+
+            //builder.Register(context => new XTestDbContext(context.Resolve<DbContextOptions<XTestDbContext>>()))
+            //         .As<IORMDbContext>().InstancePerLifetimeScope();
+
+            //repositories
+            builder.RegisterGeneric(typeof(EfRepository<>)).As(typeof(IRepository<>)).InstancePerLifetimeScope();
+            builder.RegisterType<UserService>().As<IUserService>().InstancePerLifetimeScope();
+
+            var Container = builder.Build();
+            return new AutofacServiceProvider(Container);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -120,7 +157,7 @@ namespace MySQLDemo.Resource
 
 
             app.UseAuthentication();
-
+            app.UseMultitenancy<AppTenant>();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

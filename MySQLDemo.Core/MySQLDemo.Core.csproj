@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Compile Remove="Extensions\IEnumerableExtensions.cs" />
+    <Compile Remove="MyEndpointRouter.cs" />
     <Compile Remove="MyTokenRequestValidationLog.cs" />
     <Compile Remove="MyTokenRequestValidator.cs" />
     <Compile Remove="MyTokenResponseGenerator.cs" />
@@ -15,6 +16,10 @@
     <PackageReference Include="IdentityServer4" Version="2.4.0" />
     <PackageReference Include="IdentityServer4.EntityFramework" Version="2.4.0" />
     <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SaasKit.Multitenancy\SaasKit.Multitenancy.csproj" />
   </ItemGroup>
 
 </Project>

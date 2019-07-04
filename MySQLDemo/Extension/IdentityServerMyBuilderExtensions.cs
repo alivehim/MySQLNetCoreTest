@@ -36,17 +36,18 @@ namespace MySQLDemo.Extension
                 services.Remove(descriptorIntrospection);
             }
 
-            services.TryGetDescriptors(typeof(IEndpointRouter), out var descriptorsx);
-            foreach (var item in descriptorsx)
-            {
-                var index = services.IndexOf(item);
+            //services.TryGetDescriptors(typeof(IEndpointRouter), out var descriptorsx);
+            //foreach (var item in descriptorsx)
+            //{
+            //    var index = services.IndexOf(item);
 
-                //services.Insert(index, item.WithImplementationType(implementationType));
+            //    //services.Insert(index, item.WithImplementationType(implementationType));
 
-                services.Remove(item);
-            }
+            //    services.Remove(item);
+            //}
 
-            builder.Services.AddTransient<IEndpointRouter, MyEndpointRouter>();
+            //builder.Services.AddTransient<IEndpointRouter, MyEndpointRouter>();
+
 
             builder.AddEndpoint<MyEndpointHandler>("Token", ProtocolRoutePaths.Token.EnsureLeadingSlash());
             //builder.AddEndpoint<MyIntrospectionEndpoint>("Introspection", ProtocolRoutePaths.Introspection.EnsureLeadingSlash());
